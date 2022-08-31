@@ -1,17 +1,34 @@
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { AuthContextProvider } from './context/AuthContext';
 import Splash from './pages/Splash/Splash';
 import SignIn from './pages/Auth/SignIn';
-import './styles/App.css';
+import Account from './pages/Account/Account';
 import Nav from './components/Nav';
+import './styles/App.css';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
 	return (
 		<>
-			<Nav />
-			<Routes>
-				<Route path='/' element={<Splash />} />
-				<Route path='/signin' element={<SignIn />} />
-			</Routes>
+			<AuthContextProvider>
+				<Nav />
+				<Routes>
+					<Route path='/' element={<Splash />} />
+					<Route path='/signin' element={<SignIn />} />
+					<Route
+						path='/account'
+						element={
+							<ProtectedRoute>
+								<Account />
+							</ProtectedRoute>
+						}
+					/>
+				</Routes>
+			</AuthContextProvider>
+			<ToastContainer />
 		</>
 	);
 }

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400&display=swap');
 @import './Nav.css';
 @import '../pages/Splash/Splash.css';
+@import '../pages/Account/Account.css';
 
 body {
 	margin: 0;
