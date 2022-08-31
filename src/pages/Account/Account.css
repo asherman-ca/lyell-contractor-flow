@@ -5,3 +5,56 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.account-loaded {
+	padding: 2rem;
+
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.table-header {
+	padding-bottom: 0.25rem;
+
+	display: flex;
+	justify-content: space-between;
+
+	border-bottom: 1px solid var(--clr-button);
+}
+
+.table-header .col {
+	flex-basis: 100%;
+
+	text-align: right;
+}
+
+.table-header .col:first-child {
+	text-align: left;
+}
+
+.table-tabs {
+	display: flex;
+	gap: 2rem;
+
+	cursor: pointer;
+}
+
+.table-tabs div {
+	transition: all 0.4s ease;
+}
+
+.table-tabs div:hover {
+	color: var(--clr-lyell);
+	text-decoration: underline;
+}
+
+.table-tabs div:first-child {
+	text-decoration: underline;
+	color: var(--clr-lyell);
+}
+
+.table-row {
+	padding: 0.25rem 0;
+	border-bottom: 1px solid black;
+}
