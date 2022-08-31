@@ -5,6 +5,8 @@ import { collection, getDocs } from 'firebase/firestore';
 const Account = () => {
 	const [loading, setLoading] = useState(true);
 	const [reports, setReports] = useState();
+	const [filteredReports, setFilteredReports] = useState();
+	const [tableFilter, setTableFilter] = useState('Active');
 
 	useEffect(() => {
 		const fetch = async () => {
@@ -16,10 +18,20 @@ const Account = () => {
 			});
 			setLoading(false);
 			setReports(reports);
+			setFilteredReports(
+				reports.filter((report) => report.data.status == tableFilter)
+			);
 		};
 
 		fetch();
 	}, []);
+
+	const handleFilter = (filter) => {
+		setTableFilter(filter);
+		setFilteredReports(
+			reports.filter((report) => report.data.status == filter)
+		);
+	};
 
 	if (loading) {
 		return <div className='account'>Loading...</div>;
@@ -29,9 +41,24 @@ const Account = () => {
 		<div className='account-loaded'>
 			{console.log('reports', reports)}
 			<div className='table-tabs'>
-				<div>Active</div>
-				<div>Deactivated</div>
-				<div>Deleted</div>
+				<div
+					onClick={() => handleFilter('Active')}
+					className={tableFilter == 'Active' ? 'active' : ''}
+				>
+					Active
+				</div>
+				<div
+					onClick={() => handleFilter('Deactivated')}
+					className={tableFilter == 'Deactivated' ? 'active' : ''}
+				>
+					Deactivated
+				</div>
+				<div
+					onClick={() => handleFilter('Deleted')}
+					className={tableFilter == 'Deleted' ? 'active' : ''}
+				>
+					Deleted
+				</div>
 			</div>
 			<div className='report-table'>
 				<div className='table-header'>
@@ -43,10 +70,7 @@ const Account = () => {
 					<div className='col'>Extend 90</div>
 				</div>
 				<div className='table-rows'>
-					{reports.map((report) => {
-						{
-							console.log('report', report);
-						}
+					{filteredReports.map((report) => {
 						return (
 							<div className='table-row'>
 								<div className='col'>{report.data.name}</div>

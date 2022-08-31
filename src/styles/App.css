@@ -9,12 +9,16 @@ body {
 	font-family: 'Prompt', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
+	background: var(--bg-grey);
 }
 
 :root {
 	--clr-button: rgba(4, 17, 29, 0.75);
 	--clr-grey: #81899d;
 	--clr-lyell: #0097a4;
+	--bg-grey: #f6f7f9;
+	--clr-grey2: #c3cfdd;
 }
 
 #root {
