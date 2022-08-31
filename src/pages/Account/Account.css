@@ -55,6 +55,34 @@
 }
 
 .table-row {
-	padding: 0.25rem 0;
+	padding: 0.5rem 0;
+
+	display: flex;
+	justify-content: space-between;
+
 	border-bottom: 1px solid black;
+}
+
+.table-rows .table-row:last-child {
+	border-bottom: none;
+}
+
+.table-row > .col {
+	flex-basis: 100%;
+
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+	text-align: right;
+}
+
+.table-row > .col:first-child {
+	text-align: left;
+
+	justify-content: flex-start;
+}
+
+.table-row .button {
+	width: fit-content;
 }

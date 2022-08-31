@@ -44,7 +44,27 @@ const Account = () => {
 				</div>
 				<div className='table-rows'>
 					{reports.map((report) => {
-						return <div className='table-row'>{report.data.name}</div>;
+						{
+							console.log('report', report);
+						}
+						return (
+							<div className='table-row'>
+								<div className='col'>{report.data.name}</div>
+								<div className='col'>{report.data.managerEmail}</div>
+								<div className='col'>
+									{report.data.endDate.toDate().toDateString()}
+								</div>
+								<di className='col'>
+									<div className='button'>Add Days</div>
+								</di>
+								<div className='col'>
+									<div className='button'>Add Days</div>
+								</div>
+								<div className='col'>
+									<div className='button'>Add Days</div>
+								</div>
+							</div>
+						);
 					})}
 				</div>
 			</div>
