@@ -1,0 +1,29 @@
+.nav-top {
+	width: 100%;
+	height: 0.4rem;
+	background: transparent
+		linear-gradient(90deg, #00485b, #0097a4 33%, #0097a4 57%, #93b349) 0 0
+		no-repeat padding-box;
+}
+
+.nav-body {
+	padding: 1rem 2rem;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+}
+
+.nav-image {
+	height: 3rem;
+}
+
+.nav-link {
+	cursor: pointer;
+}
+
+.nav-link:hover {
+	color: var(--clr-lyell);
+}

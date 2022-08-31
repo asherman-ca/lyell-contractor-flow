@@ -1,0 +1,10 @@
+.splash {
+	padding: 2rem;
+	flex: 1;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 3rem;
+}

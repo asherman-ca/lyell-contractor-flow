@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400&display=swap');
+@import './Nav.css';
+@import '../pages/Splash/Splash.css';
+
+body {
+	margin: 0;
+
+	font-family: 'Prompt', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+	--clr-button: rgba(4, 17, 29, 0.75);
+	--clr-grey: #81899d;
+	--clr-lyell: #0097a4;
+}
+
+#root {
+	min-height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	font-size: 2rem;
+	/* font-weight: bold; */
+}
+
+.sub-title {
+	font-size: 1rem;
+	color: var(--clr-button);
+}
+
+.sub-title span {
+	color: var(--clr-lyell);
+}
+
+.button {
+	padding: 0.5rem 0.75rem;
+
+	cursor: pointer;
+	border: 1px solid black;
+	border-radius: 0.2rem;
+}
+
+.button:hover {
+	color: var(--clr-lyell);
+	border-color: var(--clr-lyell);
+}
+
+.header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+}
