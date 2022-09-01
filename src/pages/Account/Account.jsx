@@ -8,19 +8,17 @@ const Account = () => {
 	const [tableFilter, setTableFilter] = useState('Active');
 
 	useEffect(() => {
-		if (loading) {
-			const fetch = async () => {
-				const ref = collection(db, 'users');
-				const snap = await getDocs(ref);
-				let reports = [];
-				snap.forEach((el) => {
-					return reports.push({ data: el.data(), id: el.id });
-				});
-				setLoading(false);
-				setReports(reports);
-			};
-			fetch();
-		}
+		const fetch = async () => {
+			const ref = collection(db, 'users');
+			const snap = await getDocs(ref);
+			let reports = [];
+			snap.forEach((el) => {
+				return reports.push({ data: el.data(), id: el.id });
+			});
+			setLoading(false);
+			setReports(reports);
+		};
+		fetch();
 	}, [loading]);
 
 	const handleFilter = (filter) => {
@@ -34,17 +32,18 @@ const Account = () => {
 		await updateDoc(userRef, {
 			endDate: date,
 		});
-		setLoading(true);
-		// setReports((prev) => {
-		// 	return prev.map((report) => {
-		// 		if (report.id == id) {
-		// 			report.data.endDate = endDate.seconds + 86400 * delta;
-		// 			return report;
-		// 		} else {
-		// 			return report;
-		// 		}
-		// 	});
-		// });
+		setReports((prev) => {
+			return [
+				...prev.map((report) => {
+					if (report.id == id) {
+						report.data.endDate.seconds = endDate.seconds + 86400 * delta;
+						return report;
+					} else {
+						return report;
+					}
+				}),
+			];
+		});
 	};
 
 	if (loading) {
@@ -84,6 +83,7 @@ const Account = () => {
 					<div className='col'>Extend 90</div>
 				</div>
 				<div className='table-rows'>
+					{console.log('reports in map', reports)}
 					{reports
 						.filter((report) => report.data.status == tableFilter)
 						.map((report) => {
