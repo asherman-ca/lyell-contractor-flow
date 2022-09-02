@@ -8,17 +8,19 @@ const Account = () => {
 	const [tableFilter, setTableFilter] = useState('Active');
 
 	useEffect(() => {
-		const fetch = async () => {
-			const ref = collection(db, 'users');
-			const snap = await getDocs(ref);
-			let reports = [];
-			snap.forEach((el) => {
-				return reports.push({ data: el.data(), id: el.id });
-			});
-			setLoading(false);
-			setReports(reports);
-		};
-		fetch();
+		if (loading) {
+			const fetch = async () => {
+				const ref = collection(db, 'users');
+				const snap = await getDocs(ref);
+				let reports = [];
+				snap.forEach((el) => {
+					return reports.push({ data: el.data(), id: el.id });
+				});
+				setLoading(false);
+				setReports(reports);
+			};
+			fetch();
+		}
 	}, [loading]);
 
 	const handleFilter = (filter) => {
@@ -46,13 +48,27 @@ const Account = () => {
 		});
 	};
 
+	const handleCustomDateChange = async (id, e, endDate) => {
+		// console.log('test', Date.parse(e.target.value));
+		// console.log('enddate', endDate);
+		// let parseDate = Date.parse(e.target.value);
+		// console.log('date', parseDate);
+		let date = new Date(e.target.value);
+		date.setDate(date.getDate() + 1);
+		const userRef = doc(db, 'users', id);
+		await updateDoc(userRef, {
+			endDate: date,
+		});
+		setLoading(true);
+	};
+
 	if (loading) {
 		return <div className='account'>Loading...</div>;
 	}
 
 	return (
 		<div className='account-loaded'>
-			{console.log('reports', reports)}
+			{/* {console.log('reports', reports)} */}
 			<div className='table-tabs'>
 				<div
 					onClick={() => handleFilter('Active')}
@@ -77,27 +93,30 @@ const Account = () => {
 				<div className='table-header'>
 					<div className='col'>Name</div>
 					<div className='col'>Manager</div>
-					<div className='col'>EndDate</div>
+					<div className='col'>End Date</div>
 					<div className='col'>Extend 30</div>
 					<div className='col'>Extend 60</div>
 					<div className='col'>Extend 90</div>
+					<div className='col'>Choose Date</div>
 				</div>
 				<div className='table-rows'>
-					{console.log('reports in map', reports)}
+					{/* {console.log('reports in map', reports)} */}
 					{reports
 						.filter((report) => report.data.status == tableFilter)
 						.map((report) => {
-							{
-								console.log('report', report);
-							}
 							return (
-								<div className='table-row'>
+								<div className='table-row' key={report.id}>
 									<div className='col'>{report.data.name}</div>
 									<div className='col'>{report.data.managerEmail}</div>
 									<div className='col'>
-										{report.data.endDate.toDate().toDateString()}
+										{report.data.endDate
+											.toDate()
+											.toDateString()
+											.split(' ')
+											.splice(1)
+											.join(' ')}
 									</div>
-									<di className='col'>
+									<div className='col'>
 										<div
 											className='button'
 											onClick={() =>
@@ -106,7 +125,7 @@ const Account = () => {
 										>
 											Add Days
 										</div>
-									</di>
+									</div>
 									<div className='col'>
 										<div
 											className='button'
@@ -126,6 +145,18 @@ const Account = () => {
 										>
 											Add Days
 										</div>
+									</div>
+									<div className='col'>
+										<input
+											type='date'
+											onChange={(e) =>
+												handleCustomDateChange(
+													report.id,
+													e,
+													report.data.endDate
+												)
+											}
+										/>
 									</div>
 								</div>
 							);
