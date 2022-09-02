@@ -24,12 +24,11 @@
 
 .table-header {
 	padding: 1rem 1rem 0.5rem;
-	/* padding-bottom: 0.5rem; */
 
 	display: flex;
 	justify-content: space-between;
 
-	background-color: #fafafa;
+	background-color: var(--bg-light);
 	border-bottom: 1px solid var(--clr-grey2);
 	border-top-left-radius: 1rem;
 	border-top-right-radius: 1rem;
