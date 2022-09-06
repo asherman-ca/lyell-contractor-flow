@@ -35,7 +35,6 @@ const Account = () => {
 
 	return (
 		<div className='account-loaded'>
-			{/* {console.log('reports', reports)} */}
 			<div className='table-tabs'>
 				<div
 					onClick={() => handleFilter('Active')}

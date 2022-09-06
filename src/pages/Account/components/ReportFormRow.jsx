@@ -55,39 +55,57 @@ const ReportFormRow = ({ report, setReports, setLoading }) => {
 					.join(' ')}
 			</div>
 			<div className='col'>
-				<div
-					className='button'
-					onClick={() => handleDateChange(report.id, 30, report.data.endDate)}
-				>
-					Add Days
-				</div>
+				{report.data.status !== 'Deleted' ? (
+					<div
+						className='button'
+						onClick={() => handleDateChange(report.id, 30, report.data.endDate)}
+					>
+						Add Days
+					</div>
+				) : (
+					<div></div>
+				)}
 			</div>
 			<div className='col'>
-				<div
-					className='button'
-					onClick={() => handleDateChange(report.id, 60, report.data.endDate)}
-				>
-					Add Days
-				</div>
+				{report.data.status !== 'Deleted' ? (
+					<div
+						className='button'
+						onClick={() => handleDateChange(report.id, 60, report.data.endDate)}
+					>
+						Add Days
+					</div>
+				) : (
+					<div></div>
+				)}
 			</div>
 			<div className='col'>
-				<div
-					className='button'
-					onClick={() => handleDateChange(report.id, 90, report.data.endDate)}
-				>
-					Add Days
-				</div>
+				{report.data.status !== 'Deleted' ? (
+					<div
+						className='button'
+						onClick={() => handleDateChange(report.id, 90, report.data.endDate)}
+					>
+						Add Days
+					</div>
+				) : (
+					<div></div>
+				)}
 			</div>
 			<div className='col'>
-				<input
-					type='date'
-					onChange={(e) =>
-						handleCustomDateChange(report.id, e, report.data.endDate)
-					}
-				/>
-				<div className='button' onClick={() => onSubmit(report.id)}>
-					+
-				</div>
+				{report.data.status !== 'Deleted' ? (
+					<>
+						<input
+							type='date'
+							onChange={(e) =>
+								handleCustomDateChange(report.id, e, report.data.endDate)
+							}
+						/>
+						<div className='button' onClick={() => onSubmit(report.id)}>
+							+
+						</div>
+					</>
+				) : (
+					<div></div>
+				)}
 			</div>
 		</div>
 	);
