@@ -19,12 +19,26 @@
 
 .nav-image {
 	height: 3rem;
-}
-
-.nav-link {
 	cursor: pointer;
 }
 
+.nav-link {
+	transition: all 0.4s ease;
+
+	cursor: pointer;
+	border-bottom: 1px solid transparent;
+}
+
 .nav-link:hover {
+	color: var(--clr-lyell);
+}
+
+.nav-menu {
+	display: flex;
+	gap: 2rem;
+}
+
+.nav-menu > .active {
+	border-bottom: 1px solid var(--clr-lyell);
 	color: var(--clr-lyell);
 }

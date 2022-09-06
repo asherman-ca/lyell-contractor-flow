@@ -58,6 +58,23 @@ export const AuthContextProvider = ({ children }) => {
 		}
 	};
 
+	const onDemo = async (navigate) => {
+		try {
+			const userCredential = await signInWithEmailAndPassword(
+				auth,
+				'asd@asd.com',
+				'asdasd'
+			);
+
+			if (userCredential.user) {
+				navigate('/account');
+				toast.success('Logged in');
+			}
+		} catch (error) {
+			toast.error('Invalid credentials');
+		}
+	};
+
 	const logout = () => {
 		console.log('hits');
 		signOut(auth);
@@ -75,7 +92,7 @@ export const AuthContextProvider = ({ children }) => {
 	}, []);
 
 	return (
-		<UserContext.Provider value={{ user, logout, oAuth }}>
+		<UserContext.Provider value={{ user, logout, oAuth, onDemo }}>
 			{children}
 		</UserContext.Provider>
 	);
