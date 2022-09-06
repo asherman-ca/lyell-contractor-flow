@@ -33,13 +33,22 @@ const ReportFormRow = ({ report, setReports, setLoading }) => {
 	};
 
 	const onSubmit = async (id) => {
-		console.log('submit hits');
-		console.log(customDate);
+		// console.log('submit hits');
+		// const today = new Date();
+		// console.log('customdate', customDate);
+		// console.log('today', today);
+		// console.log('diff', (today - customDate) / 86400);
+		// console.log('diff', today - customDate);
 		const userRef = doc(db, 'users', id);
 		await updateDoc(userRef, {
 			endDate: customDate,
 		});
 		setLoading(true);
+
+		// var date1 = new Date('7/11/2010');
+		// var date2 = new Date('12/12/2010');
+		// var diffDays = date2.getDate() - date1.getDate();
+		// alert(diffDays);
 	};
 
 	return (
@@ -98,10 +107,13 @@ const ReportFormRow = ({ report, setReports, setLoading }) => {
 							onChange={(e) =>
 								handleCustomDateChange(report.id, e, report.data.endDate)
 							}
-							placeholder={report.data.endDate.toDate()}
 						/>
 						<div
-							className='button check-button'
+							className={
+								customDate
+									? 'button check-button active'
+									: 'button check-button'
+							}
 							onClick={() => onSubmit(report.id)}
 						>
 							√<span className='check-button-tooltip'>Update</span>

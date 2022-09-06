@@ -71,6 +71,7 @@ const Account = () => {
 						.map((report) => {
 							return (
 								<ReportFormRow
+									key={report.id}
 									report={report}
 									setLoading={setLoading}
 									setReports={setReports}

@@ -104,6 +104,11 @@
 	padding-left: 1rem;
 
 	position: relative;
+	visibility: hidden;
+}
+
+.active {
+	visibility: visible !important;
 }
 
 .check-button:hover .check-button-tooltip {
