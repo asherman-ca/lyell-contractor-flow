@@ -102,12 +102,6 @@ const ReportFormRow = ({ report, setReports, setLoading }) => {
 			<div className='col'>
 				{report.data.status !== 'Deleted' ? (
 					<>
-						<input
-							type='date'
-							onChange={(e) =>
-								handleCustomDateChange(report.id, e, report.data.endDate)
-							}
-						/>
 						<div
 							className={
 								customDate
@@ -118,6 +112,12 @@ const ReportFormRow = ({ report, setReports, setLoading }) => {
 						>
 							√<span className='check-button-tooltip'>Update</span>
 						</div>
+						<input
+							type='date'
+							onChange={(e) =>
+								handleCustomDateChange(report.id, e, report.data.endDate)
+							}
+						/>
 					</>
 				) : (
 					<div></div>
