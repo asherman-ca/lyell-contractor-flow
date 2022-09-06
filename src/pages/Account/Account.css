@@ -99,3 +99,38 @@
 .table-row .button {
 	width: fit-content;
 }
+
+.table-row .check-button {
+	padding-left: 1rem;
+
+	position: relative;
+}
+
+.check-button:hover .check-button-tooltip {
+	visibility: visible;
+}
+
+.check-button-tooltip {
+	padding: 0rem 0.5rem;
+	position: absolute;
+	right: 0;
+	top: -2rem;
+	transform: translateX(50%);
+	z-index: 100;
+
+	border-radius: 0.25rem;
+	background: var(--clr-lyell);
+	color: white;
+	visibility: hidden;
+}
+
+.check-button-tooltip::after {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: var(--clr-lyell) transparent transparent transparent;
+}

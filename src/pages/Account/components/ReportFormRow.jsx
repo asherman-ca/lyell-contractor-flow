@@ -98,9 +98,13 @@ const ReportFormRow = ({ report, setReports, setLoading }) => {
 							onChange={(e) =>
 								handleCustomDateChange(report.id, e, report.data.endDate)
 							}
+							placeholder={report.data.endDate.toDate()}
 						/>
-						<div className='button' onClick={() => onSubmit(report.id)}>
-							+
+						<div
+							className='button check-button'
+							onClick={() => onSubmit(report.id)}
+						>
+							√<span className='check-button-tooltip'>Update</span>
 						</div>
 					</>
 				) : (
